@@ -6,11 +6,11 @@
 # Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
 #
 # All rights reserved.
-import asyncio
+
 import os
 import re
 import textwrap
-import numpy as np
+
 import aiofiles
 import aiohttp
 from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
@@ -78,6 +78,7 @@ async def gen_thumb(videoid):
         y1 = Ycenter - 250
         x2 = Xcenter + 250
         y2 = Ycenter + 250
+
         logo = youtube.crop((x1, y1, x2, y2))
         logo.thumbnail((520, 520), Image.ANTIALIAS)
         logo = ImageOps.expand(logo, border=15, fill="white")
@@ -92,9 +93,12 @@ async def gen_thumb(videoid):
         draw.text(
             (5, 5), f"{MUSIC_BOT_NAME}", fill="white", font=name_font
         )
+
+     
+
         draw.text(
             (600, 150),
-            "NOW PLAYING",
+            "NIGHTOSPHERE",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
@@ -137,6 +141,12 @@ async def gen_thumb(videoid):
         draw.text(
             (600, 550),
             f"Channel : {channel}",
+            (255, 255, 255),
+            font=arial,
+        )
+        draw.text(
+            (600, 600),
+            f"DEV : STETCH",
             (255, 255, 255),
             font=arial,
         )

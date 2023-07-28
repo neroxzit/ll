@@ -11,6 +11,7 @@ import os
 from random import randint
 
 from pykeyboard import InlineKeyboard
+from YukkiMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.types import (InlineKeyboardButton,
                             InlineKeyboardMarkup, Message)
@@ -34,7 +35,7 @@ DELETEPLAYLIST_COMMAND = get_command("DELETEPLAYLIST_COMMAND")
 
 
 @app.on_message(
-    filters.command(PLAYLIST_COMMAND)
+    command(PLAYLIST_COMMAND)
     & ~filters.edited
     & ~BANNED_USERS
 )
@@ -69,7 +70,7 @@ async def check_playlist(client, message: Message, _):
 
 
 @app.on_message(
-    filters.command(DELETEPLAYLIST_COMMAND)
+    command(DELETEPLAYLIST_COMMAND)
     & filters.group
     & ~filters.edited
     & ~BANNED_USERS
@@ -116,7 +117,7 @@ async def get_keyboard(_, user_id):
 
 
 @app.on_message(
-    filters.command(DELETEPLAYLIST_COMMAND)
+    command(DELETEPLAYLIST_COMMAND)
     & filters.private
     & ~filters.edited
     & ~BANNED_USERS

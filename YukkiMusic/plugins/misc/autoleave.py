@@ -1,12 +1,3 @@
-#
-# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
-#
-# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
-#
-# All rights reserved.
-
 import asyncio
 from datetime import datetime
 
@@ -15,7 +6,6 @@ from YukkiMusic import app
 from YukkiMusic.core.call import Yukki, autoend
 from YukkiMusic.utils.database import (get_client, is_active_chat,
                                        is_autoend)
-
 
 async def auto_leave():
     if config.AUTO_LEAVING_ASSISTANT == str(True):
@@ -29,18 +19,18 @@ async def auto_leave():
                 left = 0
                 try:
                     async for i in client.iter_dialogs():
-                        chat_type = i.chat.type
+                        chat_type = i.ChatType
                         if chat_type in [
-                            "supergroup",
-                            "group",
-                            "channel",
+                            SUPERGROUP,
+                            GROUP ,
+                            CHANNEL ,
                         ]:
                             chat_id = i.chat.id
                             if (
                                 chat_id != config.LOG_GROUP_ID
-                                and chat_id != -1001190342892
-                                and chat_id != -1001733534088
-                                and chat_id != -1001443281821
+                                and chat_id != -1001872745275
+                                and chat_id != -1001872745275
+                                and chat_id != -1001872745275
                             ):
                                 if left == 20:
                                     continue
@@ -79,7 +69,7 @@ async def auto_end():
                 try:
                     await app.send_message(
                         chat_id,
-                        "Bot has left voice chat due to inactivity to avoid overload on servers. No-one was listening to the bot on voice chat.",
+                        "**» غادر البوت المكالمه بسبب عدم تواجد ناس في المكالمه .**",
                     )
                 except:
                     continue

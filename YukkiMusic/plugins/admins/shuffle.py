@@ -9,6 +9,7 @@
 
 import random
 
+from YukkiMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.types import Message
 
@@ -23,7 +24,7 @@ SHUFFLE_COMMAND = get_command("SHUFFLE_COMMAND")
 
 
 @app.on_message(
-    filters.command(SHUFFLE_COMMAND)
+    command(SHUFFLE_COMMAND)
     & filters.group
     & ~filters.edited
     & ~BANNED_USERS

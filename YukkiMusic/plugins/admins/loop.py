@@ -7,6 +7,7 @@
 #
 # All rights reserved.
 
+from YukkiMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.types import Message
 
@@ -22,7 +23,7 @@ LOOP_COMMAND = get_command("LOOP_COMMAND")
 
 
 @app.on_message(
-    filters.command(LOOP_COMMAND)
+    command(LOOP_COMMAND)
     & filters.group
     & ~filters.edited
     & ~BANNED_USERS
@@ -52,7 +53,7 @@ async def admins(cli, message: Message, _, chat_id):
     elif state.lower() == "enable":
         await set_loop(chat_id, 10)
         return await message.reply_text(
-            _["admin_25"].format(message.from_user.first_name, 10)
+            _["admin_25"].format(message.from_user.first_name, state)
         )
     elif state.lower() == "disable":
         await set_loop(chat_id, 0)

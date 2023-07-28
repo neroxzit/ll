@@ -7,6 +7,7 @@
 #
 # All rights reserved.
 
+from YukkiMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.types import Message
 
@@ -21,7 +22,7 @@ CHANNELPLAY_COMMAND = get_command("CHANNELPLAY_COMMAND")
 
 
 @app.on_message(
-    filters.command(CHANNELPLAY_COMMAND)
+    command(CHANNELPLAY_COMMAND)
     & filters.group
     & ~filters.edited
     & ~BANNED_USERS
