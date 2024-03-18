@@ -1,0 +1,80 @@
+{
+      "name": "StetchKick",
+      "description": "هنفشخ الكل بما يرضي الله",
+      "logo": "https://telegra.ph/file/05ae09ae8d5e2f975c3c3.jpg",
+      "keywords": [
+         "ban all bot",
+         "bot",
+         "Group",
+         "Telegram"         
+      ],   
+   "stack": "heroku-20",
+   "addons": [
+      {
+         "options": {
+            "version": "12"
+         },
+         "plan": "heroku-postgresql"
+      }
+   ],
+   "env": {
+      "TOKEN": {
+         "description": "Your bot token. Can be obtained from https://telegram.dog/BotFather/",
+         "required": true,
+         "value": ""
+      },
+      "API_ID": {
+         "description": "Get API_ID from my.telegram.org .",
+         "required": true,
+         "value": ""
+      },
+      "API_HASH": {
+         "description": "Get API_HASH from my.telegram.org .",
+         "required": true,
+         "value": ""
+      },     
+      "BOT_ID": {
+         "description": "ايدي البوت",
+         "required": true,
+         "value": ""
+      },  
+      "BOT_USERNAME": {
+         "description": "your bot username without @",
+         "required": true,
+         "value": ""
+      },  
+       "BOT_NAME": {
+         "description": "اسم البوت",
+         "required": true,
+         "value": "STETCHKICK"
+      },      
+      "SUDO": {
+         "description": " ايدي المشرفين",
+         "required": true,
+         "value": "1404114574 ايديك"
+      }, 
+      "START_IMG": {
+         "description": "لينك التيليجراف",
+         "required": true,
+         "value": ""
+      },     
+      "ENV": {
+         "description": "سيبها زي ماهي",
+         "value": "ANYTHING"   
+      }           
+  },
+       "buildpacks": [ 
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-python"
+        }, 
+        { 
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
