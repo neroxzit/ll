@@ -1,0 +1,53 @@
+@bot.on(events.NewMessage(pattern='/start'))
+async def start(event):
+    sender = await event.get_sender()
+    if sender.id == DEVELOPER_ID:
+        buttons = [
+            [Button.inline('< 🔱 𝐙𝐄 🔱 >', 'ze')],
+            [Button.inline('∘ اضف رقم ∘', 'addnum'), Button.inline('∘ حذف رقم ∘', 'delnum')],
+            [Button.inline('∘ عدد الحسابات ∘', 'numacc')],
+            [Button.inline('∘ فحص الحسابات ∘', 'tstacc'), Button.inline('∘ فلود الانضمام ∘', 'tstflood')],
+            [Button.inline('∘ فورمات ∘', 'format')],
+            [Button.inline('• اوامر اخرى 🔽 • ', 'list2')]
+        ]
+        await event.respond("""**• مرحبا بك في بوت التجميع
+• الاصدار : V4.2
+➖➖➖➖➖➖➖➖➖➖➖➖**""", buttons=buttons)
+
+
+@bot.on(events.NewMessage(pattern='/start'))
+async def start(event):
+    sender = await event.get_sender()
+    if sender.id == DEVELOPER_ID:
+        buttons = [
+
+            [Button.inline('∘ حذف رقم ∘', 'delnum'),Button.inline('∘ اضف رقم ∘', 'addnum')],
+            [Button.inline('∘ عدد الحسابات ∘', 'numacc'),Button.inline('∘ فحص الحسابات ∘', 'tstacc')],
+            [Button.inline('∘ قسم الرشق والاضافة ∘', 'list3'),Button.inline('∘ قسم تجميع النقاط ∘', 'list2')],
+            [Button.inline('• اوامر اخرى • ', 'other'),Button.inline('< 🔱 𝐙𝐄 🔱 >', 'ze')],
+        ]
+        await event.respond("""**• مرحبا بك في بوت التجميع
+• الاصدار : V4.2
+➖➖➖➖➖➖➖➖➖➖➖➖**""", buttons=buttons)
+            [Button.inline('∘ فلود الانضمام ∘', 'tstflood'),Button.inline('∘ فورمات ∘', 'format')],
+
+@bot.on(events.CallbackQuery(pattern='other'))
+async def listc(event):
+    buttons = [
+         [Button.inline('∘ فلود الانضمام ∘', 'tstflood'),Button.inline('∘ فورمات ∘', 'format')],
+        [Button.inline('• القائمة الرئيسية 🔽 • ', 'list1'),Button.inline('⋆ مغادرة القنوات ⋆', 'leavekeko')],
+    ]
+    await event.edit("""**⋄ قائمة التحكم الاضافية 
+⋄ رقم القائمة : 𝟛 :**""", buttons=buttons)
+
+@bot.on(events.CallbackQuery(pattern='jnchan'))
+async def callback(event):
+    await event.edit("**• قـم بأرسال المطاليب التالية :**", buttons=[Button.inline("• رجــوع • ", 'list1')])
+    async with bot.conversation(event.sender_id) as conv:
+        await conv.send_message("**✪ قـم بأرسال يوزر القناة المراد الانضمام بها**")
+        bot_usernamme = (await conv.get_response()).text
+        await conv.send_message("**✪ حسنا قمت بالانضمام**")
+        for user_id in stored_users:
+            try:
+                await bot.send_message(user_id, f"/jn {bot_usernamme}")
+            except Exception as e:
