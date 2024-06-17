@@ -1,0 +1,4 @@
+pyromod
+asyncio
+tgcrypto
+https://github.com/KurimuzonAkuma/pyrogram/archive/dev.zip --force-reinstall

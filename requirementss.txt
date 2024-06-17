@@ -1,0 +1,67 @@
+pymongo==4.6.2
+Pyrogram==2.0.106
+Requests==2.31.0
+Telethon==1.34.0
+TgCrypto
+requests
+
+
+API_ID = "14837825"
+API_HASH = "0ed849f5e7ab2df61d969317de2ca64c"
+admin = -1404114574
+
+# Replace with your bot token
+token = "7063341831:AAFX80TtAyeQyW4rqZpx9mwBWco1xzrAnzA"
+
+
+
+    async with bot.conversation(event.chat_id) as x:
+        await event.answer(f"- تم بدا جلب روابط المميز من الحسابات برجاء انتظار اشعار", alert=True)
+        acc = db.get("accounts")
+        count = 0
+        for i in acc:
+            async with TelegramClient(StringSession(i["session"]), API_ID, API_HASH) as X:
+                async for message in X.iter_messages(777000, limit=None):
+                    try:
+                        if message.action and hasattr(message.action, 'slug'):
+                            gift_code = message.action.slug
+                            subscription_duration = message.action.months
+                            await bot.send_message(admin, f"**• رابط تليجرام مميز جديد 🥳**\n\n- الرابط : https://t.me/giftcode/{gift_code}\n- رقم الهاتف : `{i['phone_number']}`")
+                            count += 1
+                    except Exception as e:
+                        print(f"Error while fetching gift code: {e}")
+        await bot.send_message(admin, f"- تم الانتهاء من فحص الحسابات تم ايجاد {count} روابط")
+
+
+
+
+
+
+async def  get_gift(event):
+    async with bot.conversation(event.chat_id) as x:
+        await event.answer(f"- تم بدا جلب روابط المميز من الحسابات برجاء انتظار اشعار", alert=True)
+        acc = db.get("accounts")
+        used_gift_links = set()  # تعريف مجموعة لتتبع الروابط المستخدمة مسبقاً
+        count = 0
+        for i in acc:
+            async with TelegramClient(StringSession(i["session"]), API_ID, API_HASH) as X:
+                async for message in X.iter_messages(777000, limit=None):
+                    try:
+                        if isinstance(message.action, types.MessageActionGiftCode):
+                            gift_code = message.action.slug
+                            subscription_duration = message.action.months
+                            gift_link = f"https://t.me/giftcode/{gift_code}"
+                            phone_number = i['phone_number']
+                            if gift_link in used_gift_links:
+                                # إذا كان الرابط تم استخدامه مسبقًا، قم بطباعة الرسالة المطلوبة
+                                await bot.send_message(admin, f"**• الرابط تم استخدامه مسبقًا 🚫**\n\n- الرابط : {gift_link}\n- رقم الهاتف : `{phone_number}`\n- مدة الاشتراك : {subscription_duration} شهور")
+                                continue
+                            
+                            # إضافة الرابط إلى المجموعة كرابط مستخدم مسبقًا
+                            used_gift_links.add(gift_link)
+                            await bot.send_message(admin, f"**• رابط تليجرام مميز جديد 🥳**\n\n- الرابط : {gift_link}\n- رقم الهاتف : `{phone_number}`\n- مدة الاشتراك : {subscription_duration} شهور")
+                            #await bot.send_message(admin, f"**• رابط تليجرام مميز جديد 🥳**\n\n- الرابط : https://t.me/giftcode/{gift_code}\n- رقم الهاتف : `{i['phone_number']}`\n- مدة الاشتراك : {subscription_duration} شهور")
+                            count += 1
+                    except Exception as e:
+                        print(f"Error while fetching gift code: {e}")
+        await bot.send_message(admin, f"- تم الانتهاء من فحص الحسابات تم ايجاد {count} روابط")
