@@ -1,0 +1,32 @@
+{
+  "name": "🔱 𝐒𝐎𝐔𝐑𝐂𝐄 𝐙𝐄 🔱",
+  "description": "تنصيب بوتات حماية",
+  "logo": "https://graph.org/file/5bc8daaefa9f7979cc8b7.jpg",
+  "repository": "https://github.com/modymesourceze/hemaya",
+    "env": {
+        "ELHYBA": {
+            "description": "Your Telegram Bot Token from @BotFather",
+            "value": ""
+        },
+        "API_ID": {
+            "description": "Your API Id from my.telegram.org",
+            "value": ""
+        },
+        "API_HASH": {
+            "description": "Your API Hash from my.telegram.org",
+            "value": ""
+        },
+        "OWNER": {
+            "description": "Your Id On Telegram",
+            "value": ""                                    
+	   }
+	},
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "scripts": {
+    "start": "python main.py"
+  }
+}
