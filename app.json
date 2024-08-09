@@ -1,24 +1,24 @@
 {
-  "name": "🔱 𝐒𝐎𝐔𝐑𝐂𝐄 𝐙𝐄 🔱",
+  "name": "🔱 𝐒𝐎𝐔𝐑𝐂𝐄 Thunder 🔱",
   "description": "تنصيب بوتات حماية",
   "logo": "https://graph.org/file/5bc8daaefa9f7979cc8b7.jpg",
   "repository": "https://github.com/modymesourceze/hemaya",
     "env": {
         "ELHYBA": {
             "description": "Your Telegram Bot Token from @BotFather",
-            "value": ""
+            "value": "7440718204:AAHfpTkB35vIicW1v6HGH5Tw22R17cuDJtM"
         },
         "API_ID": {
             "description": "Your API Id from my.telegram.org",
-            "value": ""
+            "value": "14837825"
         },
         "API_HASH": {
             "description": "Your API Hash from my.telegram.org",
-            "value": ""
+            "value": "0ed849f5e7ab2df61d969317de2ca64c"
         },
         "OWNER": {
             "description": "Your Id On Telegram",
-            "value": ""                                    
+            "value": "1404114574"                                    
 	   }
 	},
   "buildpacks": [
